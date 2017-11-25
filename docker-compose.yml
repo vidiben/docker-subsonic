@@ -2,7 +2,7 @@ version: '2'
 
 services:
   subsonic:
-    image: vidiben/subsonic:6
+    image: vidiben/subsonic
     container_name: subsonic
     restart: always
     ports:
