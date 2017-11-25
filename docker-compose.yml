@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  subsonic:
+    image: vidiben/subsonic:6
+    container_name: subsonic
+    restart: always
+    ports:
+      - "4040:4040"
+    volumes:
+      - /home/beno/zik:/var/subsonic/music:ro
+      - /home/beno/.config/subsonic:/var/subsonic/data
