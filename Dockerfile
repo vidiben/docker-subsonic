@@ -1,7 +1,8 @@
-FROM alpine:3.6
-MAINTAINER Benoît Vidis <contact@benoitvidis.com>
+FROM alpine:3.10
 
-ENV SUBSONIC_VERSION=6.1.3
+LABEL com.benoitvidis.vendor="Benoît Vidis"
+
+ENV SUBSONIC_VERSION=6.1.6
 ENV SUBSONIC_ROOT=/opt/subsonic
 ENV SUBSONIC_DEFAULT_MUSIC_FOLDER=/var/subsonic/music
 ENV SUBSONIC_DEFAULT_PODCAST_FOLDER=/var/subsonic/podcast
