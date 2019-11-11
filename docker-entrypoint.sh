@@ -1,31 +1,6 @@
 #!/bin/sh
 
-SUBSONIC_HOME=${SUBSONIC_HOME:-/var/subsonic/data}
-SUBSONIC_HOST=${SUBSONIC_HOST:-0.0.0.0}
-SUBSONIC_PORT=${SUBSONIC_PORT:-4040}
-SUBSONIC_HTTPS_PORT=${SUBSONIC_HTTPS_PORT:-0}
-SUBSONIC_CONTEXT_PATH=${SUBSONIC_CONTEXT_PATH:-/}
-SUBSONIC_DB=${SUBSONIC_DB}
 SUBSONIC_MAX_MEMORY=${SUBSONIC_MAX_MEMORY:-512}
-SUBSONIC_PIDFILE=${SUBSONIC_PIDFILE}
-SUBSONIC_DEFAULT_MUSIC_FOLDER=${SUBSONIC_DEFAULT_MUSIC_FOLDER:-/var/subsonic/music}
-SUBSONIC_DEFAULT_PODCAST_FOLDER=${SUBSONIC_DEFAULT_PODCAST_FOLDER:-/var/subsonic/podcast}
-SUBSONIC_DEFAULT_PLAYLIST_FOLDER=${SUBSONIC_DEFAULT_PLAYLIST_FOLDER:-/var/subsonic/playlists}
+export CATALINA_OPTS="-Xmx512m"
 
-mkdir -p "${SUBSONIC_HOME}"
-cd "${SUBSONIC_ROOT}"
-
-java -Xmx${SUBSONIC_MAX_MEMORY}m \
-  -Dsubsonic.home=${SUBSONIC_HOME} \
-  -Dsubsonic.host=${SUBSONIC_HOST} \
-  -Dsubsonic.port=${SUBSONIC_PORT} \
-  -Dsubsonic.httpsPort=${SUBSONIC_HTTPS_PORT} \
-  -Dsubsonic.contextPath=${SUBSONIC_CONTEXT_PATH} \
-  -Dsubsonic.db="${SUBSONIC_DB}" \
-  -Dsubsonic.defaultMusicFolder=${SUBSONIC_DEFAULT_MUSIC_FOLDER} \
-  -Dsubsonic.defaultPodcastFolder=${SUBSONIC_DEFAULT_PODCAST_FOLDER} \
-  -Dsubsonic.defaultPlaylistFolder=${SUBSONIC_DEFAULT_PLAYLIST_FOLDER} \
-  -Djava.awt.headless=true \
-  -verbose:gc \
-  -jar subsonic-booter-jar-with-dependencies.jar
-
+exec sh catalina.sh run
